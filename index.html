@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="app.css">
+  <title>Document</title>
+</head>
+
+<body>
+  <h1 class="title">Matching filled strokes aligned vertically</h1>
+  <div class="controller">
+    <button class="btn btn-add">+</button>
+    <button class="btn btn-sub">-</button>
+  </div>
+  <section>
+    <div class="info">
+      <h3>Two different paths: Nothing</h3>
+      <div>Eventually the filled strokes will be misaligned because the jagged line has greater length</div>
+    </div>
+    <div class="svg-container">
+      <svg class="twin-lines__nothing" xmlns="http://www.w3.org/2000/svg" width="278.7779" height="172.781"
+        viewBox="0 0 73.76 45.715">
+        <g fill="none" stroke="#00aad4" stroke-linecap="round">
+          <path
+            d="m 28.160858,82.187983 h 7.650572 l 2.617177,-10.690495 6.864897,25.620138 3.161464,-36.349135 3.960852,28.486407 1.112568,-6.93955 h 8.747067 l 1.276252,-7.39712 4.447672,23.966019 2.307643,-38.08671 1.613403,15.155399 h 7.50004 l 3.378248,16.804952 1.66252,-13.510699 h 15.694617"
+            opacity=".165" stroke-width=".965" stroke-linejoin="round" transform="translate(-27.2784 -54.0512)" />
+          <path d="M 28.160858,54.933653 H 100.15585" opacity=".1648" stroke-width=".965"
+            transform="translate(-27.2784 -54.0512)" />
+          <path class="jagged-line"
+            d="m 28.160858,82.187983 h 7.650572 l 2.617177,-10.690495 6.864897,25.620139 3.161464,-36.349136 3.960852,28.486407 1.112568,-6.93955 h 8.747067 l 1.276252,-7.39712 4.447672,23.966019 2.307643,-38.08671 1.613403,15.155399 h 7.50004 l 3.378248,16.804952 1.66252,-13.510699 h 15.694617"
+            stroke-width="1.765" stroke-linejoin="round" transform="translate(-27.2784 -54.0512)" />
+          <path class="line"
+            d="m 28.160858,54.933653 h 7.650572 l 2.617177,0 h 6.864897 l 3.161464,0 3.960852,0 1.112568,0 h 8.747067 l 1.276252,0 4.447672,0 h 2.307643 l 1.613403,0 h 7.50004 l 3.378248,0 1.66252,0 h 15.694617"
+            stroke-width="1.765" stroke-linejoin="round" transform="translate(-27.2784 -54.0512)" />
+        </g>
+      </svg>
+    </div>
+    <div class="info">
+      <h3>Twin paths: pathLength</h3>
+      <div>The straight one is actually a flatten jagged line which has the same amount of nodes</div>
+      <div>Uses <code>pathLength</code> svg attribute. The pathLength value for both paths are set to 73.</div>
+    </div>
+    <div class="svg-container">
+      <svg class="twin-lines__pathLength" xmlns="http://www.w3.org/2000/svg" width="278.7779" height="172.781"
+        viewBox="0 0 73.76 45.715">
+        <g fill="none" stroke="#00aad4" stroke-linecap="round">
+          <path
+            d="m 28.160858,82.187983 h 7.650572 l 2.617177,-10.690495 6.864897,25.620138 3.161464,-36.349135 3.960852,28.486407 1.112568,-6.93955 h 8.747067 l 1.276252,-7.39712 4.447672,23.966019 2.307643,-38.08671 1.613403,15.155399 h 7.50004 l 3.378248,16.804952 1.66252,-13.510699 h 15.694617"
+            opacity=".165" stroke-width=".965" stroke-linejoin="round" transform="translate(-27.2784 -54.0512)" />
+          <path d="M 28.160858,54.933653 H 100.15585" opacity=".1648" stroke-width=".965"
+            transform="translate(-27.2784 -54.0512)" />
+          <path class="jagged-line" pathLength="73"
+            d="m 28.160858,82.187983 h 7.650572 l 2.617177,-10.690495 6.864897,25.620139 3.161464,-36.349136 3.960852,28.486407 1.112568,-6.93955 h 8.747067 l 1.276252,-7.39712 4.447672,23.966019 2.307643,-38.08671 1.613403,15.155399 h 7.50004 l 3.378248,16.804952 1.66252,-13.510699 h 15.694617"
+            stroke-width="1.765" stroke-linejoin="round" transform="translate(-27.2784 -54.0512)" />
+          <path class="line" pathLength="73"
+            d="m 28.160858,54.933653 h 7.650572 l 2.617177,0 h 6.864897 l 3.161464,0 3.960852,0 1.112568,0 h 8.747067 l 1.276252,0 4.447672,0 h 2.307643 l 1.613403,0 h 7.50004 l 3.378248,0 1.66252,0 h 15.694617"
+            stroke-width="1.765" stroke-linejoin="round" transform="translate(-27.2784 -54.0512)" />
+        </g>
+      </svg>
+    </div>
+    <div class="info">
+      <h3>Two different paths: pathLength</h3>
+      <div>Uses <code>pathLength</code> svg attribute. The pathLength value for both paths are set to 73.</div>
+    </div>
+    <div class="svg-container">
+      <svg class="duo-lines__pathLength" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 73.76 45.715" height="172.781"
+        width="278.7779">
+        <g fill="none" stroke="#00aad4" stroke-linecap="round">
+          <path
+            d="M.8825 28.1368h7.6506l2.6171-10.6905 6.865 25.6202 3.1614-36.3492 3.9609 28.4864 1.1125-6.9395h8.7471l1.2762-7.3971 4.4477 23.966 2.3077-38.0867 1.6134 15.1554h7.5l3.3783 16.805 1.6625-13.5108h15.6946"
+            opacity=".165" stroke-width=".965" stroke-linejoin="round" />
+          <path d="M.8825.8825h71.995" opacity=".1648" stroke-width=".965" />
+          <path class="jagged-line" pathLength="73"
+            d="M.8825 28.1368h7.6506l2.6171-10.6905 6.865 25.6202 3.1614-36.3492 3.9609 28.4864 1.1125-6.9395h8.7471l1.2762-7.3971 4.4477 23.966 2.3077-38.0867 1.6134 15.1554h7.5l3.3783 16.805 1.6625-13.5108h15.6946"
+            stroke-width="1.765" stroke-linejoin="round" />
+          <path class="line" pathLength="73" d="M.8825.8825h71.995" stroke-width="1.765" />
+        </g>
+      </svg>
+    </div>
+    <div class="info">
+      <h3>Two different paths: SVGGeometryElement.getPointAtLength()</h3>
+      <div>Jagged line uses <code>SVGGeometryElement.getPointAtLength()</code> to match straight line</div>
+      <div>Not very dynamic. For instance it assumes the animation only goes on x axis</div>
+    </div>
+    <div class="svg-container">
+      <svg class="duo-lines__getPointAtLength" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 73.76 45.715"
+        height="172.781" width="278.7779">
+        <g fill="none" stroke="#00aad4" stroke-linecap="round">
+          <path
+            d="M.8825 28.1368h7.6506l2.6171-10.6905 6.865 25.6202 3.1614-36.3492 3.9609 28.4864 1.1125-6.9395h8.7471l1.2762-7.3971 4.4477 23.966 2.3077-38.0867 1.6134 15.1554h7.5l3.3783 16.805 1.6625-13.5108h15.6946"
+            opacity=".165" stroke-width=".965" stroke-linejoin="round" />
+          <path d="M.8825.8825h71.995" opacity=".1648" stroke-width=".965" />
+          <path class="jagged-line"
+            d="M.8825 28.1368h7.6506l2.6171-10.6905 6.865 25.6202 3.1614-36.3492 3.9609 28.4864 1.1125-6.9395h8.7471l1.2762-7.3971 4.4477 23.966 2.3077-38.0867 1.6134 15.1554h7.5l3.3783 16.805 1.6625-13.5108h15.6946"
+            stroke-width="1.765" stroke-linejoin="round" />
+          <path class="line" d="M.8825.8825h71.995" stroke-width="1.765" />
+        </g>
+      </svg>
+    </div>
+  </section>
+  <script src="app.js"></script>
+</body>
+
+</html>

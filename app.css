@@ -1,0 +1,29 @@
+section {
+  margin-top: 50px;
+}
+
+.info {
+  margin: 50px 0;
+}
+.svg-container {
+  display: inline-block;
+}
+.controller {
+  position: sticky;
+  top: 0px;
+  left: 0;
+  padding: 10px 0;
+  background: #fff;
+  border-bottom: 2px solid #ccc;
+}
+
+.line,
+.jagged-line {
+  transition: stroke-dashoffset 500ms;
+}
+
+.btn {
+  font-size: 20px;
+  padding: 5px 20px;
+  cursor: pointer;
+}
