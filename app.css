@@ -10,9 +10,15 @@ section {
 .info {
   margin: 50px 0;
 }
+
+.title-info {
+  font-size: 12px;
+}
+
 .svg-container {
   display: inline-block;
 }
+
 .controller {
   position: -webkit-sticky;
   position: sticky;
