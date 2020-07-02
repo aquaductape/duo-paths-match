@@ -11,6 +11,7 @@ section {
 }
 .controller {
   position: sticky;
+  position: -webkit-sticky
   top: 0px;
   left: 0;
   padding: 10px 0;
