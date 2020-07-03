@@ -32,12 +32,10 @@ const initSVGSetStrokes = (root, svgPaths, pathLength) => {
   });
 };
 
-setTimeout(() => {
-  initSVGSetStrokes(duoLinesGetPointAtLength, ["line", "jagged-line"]);
-  initSVGSetStrokes(twinLinesNothing, ["line", "jagged-line"]);
-  initSVGSetStrokes(twinLinesPathLength, ["line", "jagged-line"], pathLength);
-  initSVGSetStrokes(duoLinesPathLength, ["line", "jagged-line"], pathLength);
-}, 15000);
+initSVGSetStrokes(duoLinesGetPointAtLength, ["line", "jagged-line"]);
+initSVGSetStrokes(twinLinesNothing, ["line", "jagged-line"]);
+initSVGSetStrokes(twinLinesPathLength, ["line", "jagged-line"], pathLength);
+initSVGSetStrokes(duoLinesPathLength, ["line", "jagged-line"], pathLength);
 
 console.log(svg);
 
