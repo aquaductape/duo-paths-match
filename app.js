@@ -27,8 +27,8 @@ const initSVGSetStrokes = (root, svgPaths, pathLength) => {
     svg[rootName][camelize(name)] = path;
     svg[rootName][camelize(name) + "Length"] = pathTotalLength;
 
-    path.setAttribute("stroke-dasharray", `${pathTotalLength}px`);
-    path.setAttribute("stroke-dashoffset", `${pathTotalLength}px`);
+    path.setAttribute("stroke-dasharray", pathTotalLength);
+    path.setAttribute("stroke-dashoffset", pathTotalLength);
   });
 };
 
@@ -47,7 +47,7 @@ const updateDuoLinesGetPointAtLength = (isAdding) => {
     jaggedLineLength,
   } = svg.duoLinesGetPointAtLength;
 
-  line.setAttribute("stroke-dashoffset", `${lineLength - progress}px`);
+  line.setAttribute("stroke-dashoffset", lineLength - progress);
   if (isAdding) {
     while (
       jaggedPosition < jaggedLineLength &&
@@ -66,7 +66,7 @@ const updateDuoLinesGetPointAtLength = (isAdding) => {
 
   jaggedLine.setAttribute(
     "stroke-dashoffset",
-    `${jaggedLineLength - jaggedPosition}px`
+    jaggedLineLength - jaggedPosition
   );
 };
 const updateDuoLines = (name) => {
@@ -74,8 +74,8 @@ const updateDuoLines = (name) => {
     camelize(name)
   ];
 
-  line.setAttribute("stroke-dashoffset", `${lineLength - progress}px`);
-  jaggedLine.setAttribute("stroke-dashoffset", `${jaggedLineLength - progress}px`);
+  line.setAttribute("stroke-dashoffset", lineLength - progress);
+  jaggedLine.setAttribute("stroke-dashoffset", jaggedLineLength - progress);
 };
 
 btnAdd.addEventListener("click", () => {
