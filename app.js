@@ -32,8 +32,8 @@ const initSVGSetStrokes = (root, svgPaths, pathLength) => {
   });
 };
 
-initSVGSetStrokes(duoLinesGetPointAtLength, ["line", "jagged-line"]);
 initSVGSetStrokes(twinLinesNothing, ["line", "jagged-line"]);
+initSVGSetStrokes(duoLinesGetPointAtLength, ["line", "jagged-line"]);
 initSVGSetStrokes(twinLinesPathLength, ["line", "jagged-line"], pathLength);
 initSVGSetStrokes(duoLinesPathLength, ["line", "jagged-line"], pathLength);
 
