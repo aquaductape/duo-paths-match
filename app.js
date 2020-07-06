@@ -24,12 +24,23 @@ const initSVGSetStrokes = (root, svgPaths, pathLength) => {
   svgPaths.forEach((name) => {
     const path = root.querySelector(`.${name}`);
     const pathTotalLength = pathLength ? pathLength : path.getTotalLength();
-    debugger;
-    svg[rootName][camelize(name)] = path;
-    svg[rootName][camelize(name) + "Length"] = pathTotalLength;
+    const camelizedName = camelize(name);
+
+    svg[rootName][camelizedName] = {
+      path: path,
+      length: pathTotalLength,
+      strokeWidth: parseFloat(
+        path.getAttribute("stroke-width").replace("px", "")
+      ),
+      changedWidth: false,
+    };
 
     path.setAttribute("stroke-dasharray", pathTotalLength);
     path.setAttribute("stroke-dashoffset", pathTotalLength);
+
+    // Safari and Edge Legacy sometimes has issue hidding stroke even when dasharray and dashoffset are both equal to the totalLength
+    // workaround is hide width by setting width to 0 until the dashoffset changes
+    path.setAttribute("stroke-width", 0);
   });
 };
 
@@ -41,12 +52,19 @@ initSVGSetStrokes(duoLinesPathLength, ["line", "jagged-line"], pathLength);
 console.log(svg);
 
 const updateDuoLinesGetPointAtLength = (isAdding) => {
-  const {
-    line,
-    jaggedLine,
-    lineLength,
-    jaggedLineLength,
-  } = svg.duoLinesGetPointAtLength;
+  let { line, jaggedLine } = svg.duoLinesGetPointAtLength;
+  const lineLength = line.length;
+  const jaggedLineLength = jaggedLine.length;
+  const strokeWidth = line.strokeWidth;
+  const changedWidth = line.changedWidth;
+
+  line = line.path;
+  jaggedLine = jaggedLine.path;
+
+  if (!changedWidth) {
+    jaggedLine.setAttribute("stroke-width", strokeWidth);
+    line.setAttribute("stroke-width", strokeWidth);
+  }
 
   line.setAttribute("stroke-dashoffset", lineLength - progress);
   if (isAdding) {
@@ -71,9 +89,20 @@ const updateDuoLinesGetPointAtLength = (isAdding) => {
   );
 };
 const updateDuoLines = (name) => {
-  const { line, jaggedLine, lineLength, jaggedLineLength } = svg[
-    camelize(name)
-  ];
+  let { line, jaggedLine } = svg[camelize(name)];
+
+  const lineLength = line.length;
+  const jaggedLineLength = jaggedLine.length;
+  const strokeWidth = line.strokeWidth;
+  const changedWidth = line.changedWidth;
+
+  line = line.path;
+  jaggedLine = jaggedLine.path;
+
+  if (!changedWidth) {
+    jaggedLine.setAttribute("stroke-width", strokeWidth);
+    line.setAttribute("stroke-width", strokeWidth);
+  }
 
   line.setAttribute("stroke-dashoffset", lineLength - progress);
   jaggedLine.setAttribute("stroke-dashoffset", jaggedLineLength - progress);
