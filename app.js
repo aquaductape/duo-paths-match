@@ -61,11 +61,6 @@ const updateDuoLinesGetPointAtLength = (isAdding) => {
   line = line.path;
   jaggedLine = jaggedLine.path;
 
-  if (!changedWidth) {
-    jaggedLine.setAttribute("stroke-width", strokeWidth);
-    line.setAttribute("stroke-width", strokeWidth);
-  }
-
   line.setAttribute("stroke-dashoffset", lineLength - progress);
   if (isAdding) {
     while (
@@ -87,6 +82,13 @@ const updateDuoLinesGetPointAtLength = (isAdding) => {
     "stroke-dashoffset",
     jaggedLineLength - jaggedPosition
   );
+
+  if (!changedWidth) {
+    setTimeout(() => {
+      jaggedLine.setAttribute("stroke-width", strokeWidth);
+      line.setAttribute("stroke-width", strokeWidth);
+    }, 50);
+  }
 };
 const updateDuoLines = (name) => {
   let { line, jaggedLine } = svg[camelize(name)];
