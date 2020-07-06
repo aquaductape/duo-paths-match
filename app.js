@@ -23,6 +23,9 @@ const initSVGSetStrokes = (root, svgPaths, pathLength) => {
   svg[rootName] = {};
   svgPaths.forEach((name) => {
     const path = root.querySelector(`.${name}`);
+    // Safari and Edge Legacy sometimes has issue hidding stroke even when dasharray and dashoffset are both equal to the getTotalLength
+    // rounding up fixes Safari
+    // but on Edge Legacy 1px of stroke length is at the left side https://imgur.com/qmT3snG
     const pathTotalLength = pathLength
       ? pathLength
       : Math.ceil(path.getTotalLength());
@@ -40,9 +43,9 @@ const initSVGSetStrokes = (root, svgPaths, pathLength) => {
     path.setAttribute("stroke-dasharray", pathTotalLength);
     path.setAttribute("stroke-dashoffset", pathTotalLength);
 
-    // Safari and Edge Legacy sometimes has issue hidding stroke even when dasharray and dashoffset are both equal to the totalLength
-    // workaround is hide width by setting width to 0 until the dashoffset changes
-    // path.setAttribute("stroke-width", 0);
+    // solves Edge Legacy leftover 1px stroke length
+    // conveniently works if the animation progresses from left to right
+    path.setAttribute("stroke-width", 0);
   });
 };
 
@@ -85,12 +88,10 @@ const updateDuoLinesGetPointAtLength = (isAdding) => {
     jaggedLineLength - jaggedPosition
   );
 
-  // if (!changedWidth) {
-  //   setTimeout(() => {
-  //     jaggedLine.setAttribute("stroke-width", strokeWidth);
-  //     line.setAttribute("stroke-width", strokeWidth);
-  //   }, 100);
-  // }
+  if (!changedWidth) {
+    jaggedLine.setAttribute("stroke-width", strokeWidth);
+    line.setAttribute("stroke-width", strokeWidth);
+  }
 };
 const updateDuoLines = (name) => {
   let { line, jaggedLine } = svg[camelize(name)];
@@ -106,12 +107,10 @@ const updateDuoLines = (name) => {
   line.setAttribute("stroke-dashoffset", lineLength - progress);
   jaggedLine.setAttribute("stroke-dashoffset", jaggedLineLength - progress);
 
-  // if (!changedWidth) {
-  //   setTimeout(() => {
-  //     jaggedLine.setAttribute("stroke-width", strokeWidth);
-  //     line.setAttribute("stroke-width", strokeWidth);
-  //   }, 100);
-  // }
+  if (!changedWidth) {
+    jaggedLine.setAttribute("stroke-width", strokeWidth);
+    line.setAttribute("stroke-width", strokeWidth);
+  }
 };
 
 btnAdd.addEventListener("click", () => {
