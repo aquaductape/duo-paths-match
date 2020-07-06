@@ -23,7 +23,9 @@ const initSVGSetStrokes = (root, svgPaths, pathLength) => {
   svg[rootName] = {};
   svgPaths.forEach((name) => {
     const path = root.querySelector(`.${name}`);
-    const pathTotalLength = pathLength ? pathLength : path.getTotalLength();
+    const pathTotalLength = pathLength
+      ? pathLength
+      : Math.ceil(path.getTotalLength());
     const camelizedName = camelize(name);
 
     svg[rootName][camelizedName] = {
@@ -40,7 +42,7 @@ const initSVGSetStrokes = (root, svgPaths, pathLength) => {
 
     // Safari and Edge Legacy sometimes has issue hidding stroke even when dasharray and dashoffset are both equal to the totalLength
     // workaround is hide width by setting width to 0 until the dashoffset changes
-    path.setAttribute("stroke-width", 0);
+    // path.setAttribute("stroke-width", 0);
   });
 };
 
@@ -83,12 +85,12 @@ const updateDuoLinesGetPointAtLength = (isAdding) => {
     jaggedLineLength - jaggedPosition
   );
 
-  if (!changedWidth) {
-    setTimeout(() => {
-      jaggedLine.setAttribute("stroke-width", strokeWidth);
-      line.setAttribute("stroke-width", strokeWidth);
-    }, 50);
-  }
+  // if (!changedWidth) {
+  //   setTimeout(() => {
+  //     jaggedLine.setAttribute("stroke-width", strokeWidth);
+  //     line.setAttribute("stroke-width", strokeWidth);
+  //   }, 100);
+  // }
 };
 const updateDuoLines = (name) => {
   let { line, jaggedLine } = svg[camelize(name)];
@@ -101,13 +103,15 @@ const updateDuoLines = (name) => {
   line = line.path;
   jaggedLine = jaggedLine.path;
 
-  if (!changedWidth) {
-    jaggedLine.setAttribute("stroke-width", strokeWidth);
-    line.setAttribute("stroke-width", strokeWidth);
-  }
-
   line.setAttribute("stroke-dashoffset", lineLength - progress);
   jaggedLine.setAttribute("stroke-dashoffset", jaggedLineLength - progress);
+
+  // if (!changedWidth) {
+  //   setTimeout(() => {
+  //     jaggedLine.setAttribute("stroke-width", strokeWidth);
+  //     line.setAttribute("stroke-width", strokeWidth);
+  //   }, 100);
+  // }
 };
 
 btnAdd.addEventListener("click", () => {
